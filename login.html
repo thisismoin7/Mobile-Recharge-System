@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cool-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revoza | Login</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <script  src="Js/theme.js"></script>
+    <script  src="Js/form-validation.js"></script>
+    <script  src="Js/script.js"></script>
+</head>
+
+<body class="auth-page-body" data-auth-page="login">
+    <div class="auth-page-shell">
+        <header class="auth-page-brand" aria-label="Revoza brand">
+            <div class="auth-page-brand-mark">⚡</div>
+            <div>
+                <span class="auth-page-brand-name">Revoza</span>
+                <span class="auth-page-brand-tag">Telecom Suite</span>
+            </div>
+        </header>
+
+        <main class="auth-page-card">
+            <div class="login-heading">
+                <span class="login-eyebrow" id="auth-eyebrow">WELCOME TO REVOZA</span>
+                <h2 id="auth-title">Sign in to your account</h2>
+                <p id="auth-description">Manage your wallet and recharges in one place.</p>
+            </div>
+
+            <form class="login-form" onsubmit="handleAuthSubmit(event)" novalidate>
+                <div id="signup-name-field" class="auth-conditional hidden">
+                    <label for="signup-name">Full name</label>
+                    <input
+                        type="text"
+                        id="signup-name"
+                        name="name"
+                        autocomplete="name"
+                        placeholder="Your name"
+                        aria-describedby="signup-name-error"
+                        oninput="updateAuthFeedback(true)">
+                    <p id="signup-name-error" class="auth-field-error hidden" aria-live="polite"></p>
+                </div>
+
+                <label for="login-email">Email address</label>
+                <input
+                    type="email"
+                    id="login-email"
+                    name="email"
+                    autocomplete="username"
+                    placeholder="you@example.com"
+                    aria-describedby="auth-email-error"
+                    oninput="updateAuthFeedback(true)"
+                    required>
+                <p id="auth-email-error" class="auth-field-error hidden" aria-live="polite"></p>
+
+                <label for="login-password">Password</label>
+                <input
+                    type="password"
+                    id="login-password"
+                    name="password"
+                    autocomplete="current-password"
+                    placeholder="Enter your password"
+                    aria-describedby="password-rules auth-password-error auth-message"
+                    oninput="updatePasswordRules(); updateAuthFeedback(true)"
+                    required>
+
+                <div id="password-rules" class="password-rules hidden" aria-live="polite">
+                    <span class="password-rules-title">Password must have:</span>
+                    <span data-password-rule="length">At least 8 characters</span>
+                    <span data-password-rule="uppercase">One uppercase letter (A-Z)</span>
+                    <span data-password-rule="lowercase">One lowercase letter (a-z)</span>
+                    <span data-password-rule="number">One number (0-9)</span>
+                    <span data-password-rule="special">One special character (!@#$...)</span>
+                </div>
+                <p id="auth-password-error" class="auth-field-error hidden" aria-live="polite"></p>
+
+                <div id="signup-confirm-field" class="auth-conditional hidden">
+                    <label for="signup-confirm-password">Confirm password</label>
+                    <input
+                        type="password"
+                        id="signup-confirm-password"
+                        name="confirm-password"
+                        autocomplete="new-password"
+                        placeholder="Re-enter your password"
+                        aria-describedby="signup-confirm-error"
+                        oninput="updateAuthFeedback(true)">
+                    <p id="signup-confirm-error" class="auth-field-error hidden" aria-live="polite"></p>
+                </div>
+
+                <div id="login-options" class="login-options">
+                    <label class="remember-option">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <button type="button" class="forgot-password" onclick="showToast('Password reset requires a connected account service.', 'ℹ️')">
+                        Forgot password?
+                    </button>
+                </div>
+
+                <p id="auth-message" class="auth-message hidden" role="alert"></p>
+                <button type="submit" id="auth-submit" class="login-submit">Sign in</button>
+                <p class="auth-switch">
+                    <span id="auth-switch-prompt">New to Revoza?</span>
+                    <button type="button" id="auth-switch-button" onclick="window.location.href='signup.html'">Create an account</button>
+                </p>
+               
+        </main>
+    </div>
+
+    <div id="toast-shelf" class="toast-shelf" aria-live="polite" aria-atomic="true"></div>
+</body>
+
+</html>

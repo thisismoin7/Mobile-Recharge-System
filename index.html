@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cool-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Revoza</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="Js/theme.js"></script>
+</head>
+
+<body>
+
+  
+
+    <header class="one">
+
+        <div class="two">
+            ⚡
+        </div>
+
+
+  
+        <span class="three">
+            Revoza
+        </span>
+
+
+
+        <span class="four">
+            Telecom Suite
+        </span>
+
+
+
+        <nav class="nav-box">
+
+            <button class="Mobile active">
+                📱 Mobile Recharge
+            </button>
+
+           <button class="Mobile" onclick="window.location.href='analytical.html'">
+           📊 Analytics &amp; Spending
+          </button>
+
+         <button class="Mobile" onclick="window.location.href='ledger.html'">
+          📜 Transaction Ledger
+         </button>
+        </nav>
+
+
+
+        <div class="right-section">
+
+
+    
+
+            <div class="theme">
+
+                <select aria-label="Choose color theme">
+                    <option value="cool-gray">🔘 Cool Gray</option>
+                    <option value="cool-dark">🌙 Cool Dark</option>
+                    <option value="soft-white">⚪ Soft White</option>
+                    <option value="warm-cream">🌾 Warm Cream</option>
+                    <option value="soft-sage">🌿 Soft Sage</option>
+                </select>
+
+            </div>
+
+
+
+
+            <div class="wallet">
+
+                <div class="balance-info">
+
+                    <strong>
+                        Balance: <span id="display-wallet-bal">₹2,500.00</span>
+                    </strong>
+
+                    <small>
+                        Min Bal: ₹500.00
+                    </small>
+
+                </div>
+    
+                <button type="button" onclick="openRefillModal()">
+                + Refill
+                </button>  
+
+            </div>
+
+
+         
+
+            <div class="user-dropdown-container">
+
+                <button
+                    onclick="handleAuthButtonClick()"
+                    class="avatar-button"
+                    id="avatar-btn"
+                    aria-label="Open login page or show signed-in status"
+                    aria-expanded="false"
+                    aria-controls="user-menu">
+                    Log in
+                </button>
+
+                <div id="user-menu" class="dropdown-menu login-menu" aria-label="Login form">
+                    <div class="login-heading">
+                        <span class="login-eyebrow" id="auth-eyebrow">WELCOME TO REVOZA</span>
+                        <h2 id="auth-title">Sign in to your account</h2>
+                        <p id="auth-description">Manage your wallet and recharges in one place.</p>
+                    </div>
+
+                    <form class="login-form" onsubmit="handleAuthSubmit(event)" novalidate>
+                        <div id="signup-name-field" class="auth-conditional hidden">
+                            <label for="signup-name">Full name</label>
+                            <input
+                                type="text"
+                                id="signup-name"
+                                name="name"
+                                autocomplete="name"
+                                placeholder="Your name"
+                                aria-describedby="signup-name-error"
+                                oninput="updateAuthFeedback(true)">
+                            <p id="signup-name-error" class="auth-field-error hidden" aria-live="polite"></p>
+                        </div>
+
+                        <label for="login-email">Email address</label>
+                        <input
+                            type="email"
+                            id="login-email"
+                            name="email"
+                            autocomplete="username"
+                            placeholder="you@example.com"
+                            aria-describedby="auth-email-error"
+                            oninput="updateAuthFeedback(true)"
+                            required>
+                        <p id="auth-email-error" class="auth-field-error hidden" aria-live="polite"></p>
+
+                        <label for="login-password">Password</label>
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            aria-describedby="password-rules auth-password-error auth-message"
+                            oninput="updatePasswordRules(); updateAuthFeedback(true)"
+                            required>
+
+                        <div id="password-rules" class="password-rules hidden" aria-live="polite">
+                            <span class="password-rules-title">Password must have:</span>
+                            <span data-password-rule="length">At least 8 characters</span>
+                            <span data-password-rule="uppercase">One uppercase letter (A-Z)</span>
+                            <span data-password-rule="lowercase">One lowercase letter (a-z)</span>
+                            <span data-password-rule="number">One number (0-9)</span>
+                            <span data-password-rule="special">One special character (!@#$...)</span>
+                        </div>
+                        <p id="auth-password-error" class="auth-field-error hidden" aria-live="polite"></p>
+
+                        <div id="signup-confirm-field" class="auth-conditional hidden">
+                            <label for="signup-confirm-password">Confirm password</label>
+                            <input
+                                type="password"
+                                id="signup-confirm-password"
+                                name="confirm-password"
+                                autocomplete="new-password"
+                                placeholder="Re-enter your password"
+                                aria-describedby="signup-confirm-error"
+                                oninput="updateAuthFeedback(true)">
+                            <p id="signup-confirm-error" class="auth-field-error hidden" aria-live="polite"></p>
+                        </div>
+
+                        <div id="login-options" class="login-options">
+                            <label class="remember-option">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+                            <button type="button" class="forgot-password" onclick="showToast('Password reset requires a connected account service.', 'ℹ️')">
+                                Forgot password?
+                            </button>
+                        </div>
+
+                        <p id="auth-message" class="auth-message hidden" role="alert"></p>
+                        <button type="submit" id="auth-submit" class="login-submit">Sign in</button>
+                        <p class="auth-switch">
+                            <span id="auth-switch-prompt">New to Revoza?</span>
+                            <button type="button" id="auth-switch-button" onclick="setAuthMode('signup')">Create an account</button>
+                        </p>
+                        <p class="login-note">Demo only — accounts are saved in this browser and are not secure or available on other devices.</p>
+                    </form>
+                    <div id="auth-session" class="auth-session hidden">
+                        <h3 id="auth-session-name"></h3>
+                        <p id="auth-session-email"></p>
+                        <button type="button" class="auth-logout" onclick="logOut()">Log out</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+   
+
+<div class="recharge-layout">
+
+    
+
+    <div class="left-column">
+
+       
+
+        <div class="select-operator">
+
+            <span>📱 Select Operator</span>
+
+            <div class="pp-sidebar">
+
+                <button
+                    onclick="setSimType('prepaid')"
+                    id="type-prepaid"
+                    class="toggle-btn active">
+                    Prepaid
+                </button>
+
+                <button
+                    onclick="setSimType('postpaid')"
+                    id="type-postpaid"
+                    class="toggle-btn">
+                    Postpaid
+                </button>
+
+            </div>
+
+
+        
+
+            <div class="button-one">
+
+                <button
+                    onclick="chooseOperator('Jio')"
+                    id="op-card-Jio">
+
+                    <div class="logo-selector">
+                        JIO
+                    </div>
+
+                    <strong>Reliance Jio</strong>
+                    <br>
+
+                    <small>True 5G</small>
+
+                    <span
+                        id="op-check-Jio"
+                        class="selected-indicator">
+                        ✓
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <div class="button-two">
+
+                <button
+                    onclick="chooseOperator('Airtel')"
+                    id="op-card-Airtel">
+
+                    <div class="logo-selector">
+                        AIR
+                    </div>
+
+                    <strong>Airtel</strong>
+                    <br>
+
+                    <small>5G Plus</small>
+
+                    <span
+                        id="op-check-Airtel"
+                        class="selected-indicator">
+                        ✓
+                    </span>
+
+                </button>
+
+            </div>
+
+
+        
+
+            <div class="button-three">
+
+                <button
+                    onclick="chooseOperator('Vi')"
+                    id="op-card-Vi">
+
+                    <div class="logo-selector">
+                        VI
+                    </div>
+
+                    <strong>Vodafone Idea</strong>
+                    <br>
+
+                    <small>GIGAnet 4G</small>
+
+                    <span
+                        id="op-check-Vi"
+                        class="selected-indicator">
+                        ✓
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <div class="button-four">
+
+                <button
+                    onclick="chooseOperator('BSNL')"
+                    id="op-card-BSNL">
+
+                    <div class="logo-selector">
+                        BSN
+                    </div>
+
+                    <strong>BSNL</strong>
+                    <br>
+
+                    <small>National Fiber</small>
+
+                    <span
+                        id="op-check-BSNL"
+                        class="selected-indicator">
+                        ✓
+                    </span>
+
+                </button>
+
+            </div>
+
+
+         
+
+            <div class="phone-field-group">
+
+                <label class="field-label">
+                    Mobile Phone Number
+                </label>
+
+                <div class="phone-input-wrap">
+
+                    <div class="prefix-tag">
+                        +91
+                    </div>
+
+                    <input
+                        type="tel"
+                        id="input-phone-num"
+                        maxlength="18"
+                        placeholder="10-digit or +91 mobile number"
+                        value="9820012345"
+                        oninput="handlePhoneTyping()"
+                        class="input-field phone-input">
+
+                    <div class="auto-detect-pill">
+
+                        <span
+                            id="detected-op-badge"
+                            class="badge badge-brand">
+                            Jio
+                        </span>
+
+                </div>
+
+            </div>
+
+
+         
+
+            <div class="pill-wrapper circle-bar">
+
+                <span class="circle-text">
+                    Detected Telecom Circle:
+                </span>
+
+                <span
+                    id="detected-circle-text"
+                    class="circle-val">
+                    Mumbai & Maharashtra
+                </span>
+
+            </div>
+
+        </div>
+
+        </div>
+
+     
+
+        <div class="card">
+
+            <h3 class="summary-title">
+
+                <span>
+                    🧾 ORDER & TAX SUMMARY
+                </span>
+
+                <span id="summary-pack-badge" class="selected-indicator">
+                    ✓ ₹299 Pack Selected
+                </span>
+
+            </h3>
+
+
+            <div class="summary-item">
+
+                <span
+                    id="summary-base-label"
+                    class="summary-item-label">
+
+                    Selected Base Plan
+
+                </span>
+
+                <span
+                    id="summary-base-val"
+                    class="summary-item-val">
+
+                    ₹299.00
+
+                </span>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span class="summary-item-label">
+
+                    Govt. Telecom GST (18%)
+
+                </span>
+
+                <span
+                    id="summary-gst-val"
+                    class="summary-item-val">
+
+                    ₹53.82
+
+                </span>
+
+            </div>
+
+
+            <div
+                id="promo-discount-row"
+                class="hidden summary-item">
+
+                <span>
+                    Promo Discount
+                </span>
+
+                <span id="summary-discount-val">
+                    -₹0.00
+                </span>
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span class="total-text">
+                    Total Payable
+                </span>
+
+                <span
+                    id="summary-total-val"
+                    class="total-num">
+
+                    ₹352.82
+
+                </span>
+
+            </div>
+
+
+
+            <div class="coupon-box">
+
+                <label class="field-label">
+                    Apply Promo / Coupon Code
+                </label>
+
+                <div class="coupon-row">
+
+                    <input
+                        type="text"
+                        id="coupon-input"
+                        placeholder="PROMO10, FLAT50"
+                        class="input-field coupon-input">
+
+                    <button
+                        onclick="applyCoupon()"
+                        class="btn-secondary">
+
+                        Apply
+
+                    </button>
+
+                </div>
+
+
+                <p class="coupon-hints">
+
+                    Try:
+                    <strong>PROMO10</strong>
+                    (10% OFF),
+
+                    <strong>FLAT50</strong>
+                    (₹50 OFF)
+
+                </p>
+
+            </div>
+
+
+ 
+
+        <button
+         type="button"
+         id="pay-button"
+         onclick="processCheckout()"
+         class="btn-primary"
+         style="width: 100%; justify-content: space-between; padding: 0.875rem 1.25rem;">
+
+        <span id="pay-button-text">
+        Confirm & Pay Now
+        </span>
+
+         <span id="pay-button-amount">
+          ₹352.82
+          </span>
+
+         </button>
+
+            <p class="minimum-balance">
+
+                🛡️ Minimum wallet balance requirement:
+
+                <strong>
+                    ₹500.00
+                </strong>
+
+            </p>
+
+        </div>
+
+    </div>
+   
+
+
+
+    <div class="catlog-panel">
+
+        <div class="card">
+
+           
+
+            <div class="catlog-top">
+
+                <div>
+
+                    <h2 class="catlog-heading">
+                        Recharge Plans Catalog
+                    </h2>
+
+                    <p class="catlog-sub">
+
+                        Showing plans for
+
+                        <strong id="catalog-op-label">
+                            Reliance Jio (Prepaid)
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+               
+
+                <div class="search-filter-row">
+
+                    <input
+                        type="text"
+                        id="plan-search-input"
+                        oninput="filterPlans()"
+                        placeholder="Search data, price, validity..."
+                        class="input-field">
+
+                </div>
+
+            </div>
+
+
+   
+
+            <div
+                class="category-tab-bar"
+                id="category-tabs">
+
+                <button
+                    onclick="switchCategory('all', this)"
+                    class="cat-tab active">
+
+                    All Plans
+
+                </button>
+
+
+                <button
+                    onclick="switchCategory('5g', this)"
+                    class="cat-tab inactive">
+
+                    Unlimited 5G
+
+                </button>
+
+
+                <button
+                    onclick="switchCategory('data', this)"
+                    class="cat-tab inactive">
+
+                    Data Boosters
+
+                </button>
+
+
+                <button
+                    onclick="switchCategory('annual', this)"
+                    class="cat-tab inactive">
+
+                    Annual Value
+
+                </button>
+
+
+                <button
+                    onclick="switchCategory('ott', this)"
+                    class="cat-tab inactive">
+
+                    Entertainment / OTT
+
+                </button>
+
+            </div>
+
+
+        
+
+            <div
+                id="plans-scroll-grid"
+                class="plans-scroll-grid">
+
+               
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+<div id="modal-plan-details" class="modal-overlay hidden">
+
+    <section class="modal-box plan-details-box" role="dialog" aria-modal="true" aria-labelledby="modal-plan-price">
+
+        <button type="button"
+                class="modal-close"
+                aria-label="Close plan details"
+                onclick="closeModals()">
+            &times;
+        </button>
+
+        <h2 id="modal-plan-price">Plan Details</h2>
+
+        <div id="modal-plan-body"></div>
+
+        <button type="button"
+                class="btn-primary"
+                onclick="closeModals()">
+            Close
+        </button>
+
+    </section>
+
+</div>
+
+
+
+<div id="modal-refill" class="modal-overlay hidden">
+
+    <div class="modal-box">
+
+        <button type="button"
+                class="modal-close"
+                onclick="closeModals()">
+            &times;
+        </button>
+
+        <h2>Refill PulsePay Wallet</h2>
+
+        <label for="refill-amount-input">
+            Enter Refill Amount (₹)
+        </label>
+
+        <input
+            type="number"
+            id="refill-amount-input"
+            class="input-field"
+            value="1000"
+            min="500">
+
+        <p>⚠️ Minimum wallet refill amount is ₹500.</p>
+
+        <div class="refill-quick-buttons">
+
+            <button type="button" onclick="setRefillQuick(500)">
+                + ₹500
+            </button>
+
+            <button type="button" onclick="setRefillQuick(1000)">
+                + ₹1000
+            </button>
+
+            <button type="button" onclick="setRefillQuick(2000)">
+                + ₹2000
+            </button>
+
+        </div>
+
+        <button type="button"
+                class="btn-primary"
+                onclick="executeWalletRefill()">
+            Add Funds to Wallet
+        </button>
+
+    </div>
+</div>
+
+
+<!-- Recharge confirmation (this was missing, which is why the pay button did nothing) -->
+<div id="modal-recharge-confirmation" class="modal-overlay hidden">
+
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="recharge-confirm-title">
+
+        <h2 id="recharge-confirm-title">Confirm Recharge</h2>
+
+        <p id="recharge-confirmation-message"></p>
+
+        <div class="receipt-actions">
+            <button type="button"
+                    id="confirm-recharge-yes"
+                    class="btn-primary"
+                    onclick="confirmRecharge()">
+                Yes, Pay Now
+            </button>
+
+            <button type="button"
+                    id="confirm-recharge-no"
+                    class="btn-secondary"
+                    onclick="cancelRechargeConfirmation()">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="modal-receipt" class="modal-overlay hidden">
+
+    <div class="modal-box receipt-box">
+
+        <button type="button"
+                class="modal-close"
+                onclick="closeModals()">
+            &times;
+        </button>
+
+        <h2 id="rcpt-title">Revoza — Tax Invoice</h2>
+
+        <p id="rcpt-simulation-note" class="hidden"></p>
+
+        <p>Transaction ID: <strong id="rcpt-id"></strong></p>
+
+        <p>Date & Time: <strong id="rcpt-date"></strong></p>
+
+        <p><span id="rcpt-phone-label">Mobile Number:</span> <strong id="rcpt-phone"></strong></p>
+
+        <p><span id="rcpt-op-label">Operator / Type:</span> <strong id="rcpt-op"></strong></p>
+
+        <hr>
+
+        <p><span id="rcpt-base-label">Base Plan Price:</span> <strong id="rcpt-base"></strong></p>
+
+        <p id="rcpt-gst-row"><span id="rcpt-gst-label">GST (18%):</span> <strong id="rcpt-gst"></strong></p>
+
+        <p><span id="rcpt-total-label">Total Paid:</span> <strong id="rcpt-total"></strong></p>
+
+        <div class="receipt-actions">
+            <button type="button"
+                    class="btn-primary"
+                    onclick="printReceipt()">
+                🖨️ Print Receipt / Save PDF
+            </button>
+
+            <button type="button"
+                    class="btn-secondary"
+                    onclick="closeModals()">
+                Close
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ========== TOAST NOTIFICATIONS ========== -->
+<div id="toast-shelf"></div>
+
+<footer class="site-footer">
+    <div class="footer-shell">
+        <div class="footer-brand">
+            <div class="footer-logo">⚡</div>
+            <div class="footer-brand-copy">
+                <div class="footer-brand-row">
+                    <span class="footer-name">Revoza</span>
+                    <span class="footer-tag">Telecom Suite</span>
+                </div>
+                <p>Smart mobile recharges, clearer spending insights, and receipts that stay easy to trust.</p>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>Company</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Recharge</a></li>
+                <li><a href="analytical.html">Insights</a></li>
+                <li><a href="ledger.html">Ledger</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Support</h4>
+            <ul class="footer-links">
+                <li><span>Help Center</span></li>
+                <li><span>Billing</span></li>
+                <li><span>Security</span></li>
+            </ul>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h4>Contact</h4>
+            <p>support@revoza.app</p>
+            <p>+91 12340001234</p>
+            <p>Mon–Sat · 9:00 to 21:00 IST</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Revoza. All rights reserved.</span>
+        <div class="footer-legal">
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Security</span>
+        </div>
+    </div>
+</footer>
+
+
+   <script src="./Js/form-validation.js"></script>
+   <script src="./Js/script.js"></script>
+
+</body>
+
+</html>
