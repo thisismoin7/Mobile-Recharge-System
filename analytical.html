@@ -3,95 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revoza</title>
+    <title>Analytics · Revoza</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="apple-touch-icon" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <script>try{var t=localStorage.getItem('revoza-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
     <script defer src="Js/theme.js"></script>
 </head>
 <body>
-     
+    <header class="app-header">
+        <a class="brand" href="index.html" aria-label="Revoza home">
+            <span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <span class="brand-name">Revoza</span>
+            <span class="brand-tag">Telecom Suite</span>
+        </a>
 
-    <header class="one">
-
-        <div class="two">
-            ⚡
-        </div>
-
-
-  
-        <span class="three">
-            Revoza
-        </span>
-
-
-
-        <span class="four">
-            Telecom Suite
-        </span>
-
-
-
-        <nav class="nav-box">
-
-            <button class="Mobile" onclick="window.location.href='index.html'">
-                📱 Mobile Recharge
-            </button>
-
-           <button class="Mobile active">
-           📊 Analytics &amp; Spending
-          </button>
-
-         <button class="Mobile" onclick="window.location.href='ledger.html'">
-          📜 Transaction Ledger
-         </button>
+        <nav class="app-nav" aria-label="Primary">
+            <a class="nav-item" href="index.html">Mobile Recharge</a>
+            <a class="nav-item" href="analytical.html" aria-current="page">Analytics &amp; Spending</a>
+            <a class="nav-item" href="ledger.html">Transaction Ledger</a>
         </nav>
 
-
-
-        <div class="right-section">
-
-
-    
-
+        <div class="header-actions">
             <div class="theme">
-
-                <select aria-label="Choose color theme">
-                    <option value="cool-gray">🔘 Cool Gray</option>
-                    <option value="cool-dark">🌙 Cool Dark</option>
-                    <option value="soft-white">⚪ Soft White</option>
-                    <option value="warm-cream">🌾 Warm Cream</option>
-                    <option value="soft-sage">🌿 Soft Sage</option>
+                <select aria-label="Color theme">
+                    <option value="cool-dark">Dark</option>
+                    <option value="soft-white">Light</option>
+                    <option value="cool-gray">Gray</option>
+                    <option value="warm-cream">Paper</option>
+                    <option value="soft-sage">Sage</option>
                 </select>
-
             </div>
-
-
-
 
             <div class="wallet">
-
                 <div class="balance-info">
-
-                    <strong>
-                        Balance: <span id="display-wallet-bal">₹2,500.00</span>
-                    </strong>
-
-                    <small>
-                        Min Bal: ₹500.00
-                    </small>
-
+                    <strong><span class="balance-label">Balance</span> <span class="num" id="display-wallet-bal">₹2,500.00</span></strong>
+                    <small>Minimum ₹500.00</small>
                 </div>
-
-
-                <button onclick="window.location.href='index.html'">
-                    + Refill
-                </button>
-
+                <a class="btn-primary btn-sm" href="index.html">Refill</a>
             </div>
-
-
-         
 
             <div class="user-dropdown-container">
                 <button
@@ -102,128 +55,94 @@
                     Log in
                 </button>
             </div>
-
         </div>
-
     </header>
 
-    <div class="cards-container">
-
-     <div class="total-expenditure" >
-            <p class="telecom-expenditure">Total Telecom Expenditure</p>
-            <span class="telecom-cost" id="kpi-total-spent">₹0.00</span> <br>
-            <small class="telecom-small">↑ Live ledger tracker</small>
-     </div>
-
-     <div class="total-expenditure-one" >
-            <p class="telecom-expenditure-one">Total Transaction Completed</p>
-            <span class="telecom-cost-one" id="kpi-total-count">0</span> <br>
-            <small class="telecom-small-one"> Across all networks</small>
-     </div>
-
-     <div class="total-expenditure-two" >
-            <p class="telecom-expenditure-two">Average Recharge Ticket</p>
-            <span class="telecom-cost-two" id="kpi-avg-amount">₹0.00</span> <br>
-            <small class="telecom-small-two">Optimal Pack Selection</small>
-     </div>
-
-
-     <div class="total-expenditure-three" >
-            <p class="telecom-expenditure-three">Active Wallet Vault</p>
-            <span class="telecom-cost-three" id="kpi-wallet-bal">₹2,500.00</span> <br>
-            <small class="telecom-small-three">Minimum ₹500 limit</small>
-     </div>
-
-    
-<div class="recharge-insights">
-
-    <div class="insight-feature">
-
-        <div class="feature-top">
-            <span class="feature-badge">✦ SMART INSIGHT</span>
+    <main class="page">
+        <div class="page-header">
+            <h1 class="page-title">Analytics &amp; spending</h1>
+            <p class="page-sub">Totals are calculated from your transaction ledger.</p>
         </div>
 
-        <h2>Recharge smarter.</h2>
-
-        <p>
-            Get more value from every recharge by comparing
-            data, validity and overall plan benefits.
-        </p>
-
-        <div class="feature-bottom">
-            <span>💡</span>
-            <span>Make every recharge count</span>
-        </div>
-
-    </div>
-
-
-    
-    <div class="insight-list">
-
-        <div class="smart-insight">
-            <div class="smart-icon">📡</div>
-
-            <div>
-                <h4>5G Ready</h4>
-                <p>Higher speed with lower latency.</p>
+        <div class="kpi-grid">
+            <div class="kpi kpi--lead">
+                <span class="kpi-label">Total telecom expenditure</span>
+                <span class="kpi-value" id="kpi-total-spent">₹0.00</span>
+                <span class="kpi-note">Completed recharges only</span>
+            </div>
+            <div class="kpi">
+                <span class="kpi-label">Completed transactions</span>
+                <span class="kpi-value" id="kpi-total-count">0</span>
+                <span class="kpi-note">Across all networks</span>
+            </div>
+            <div class="kpi">
+                <span class="kpi-label">Average recharge</span>
+                <span class="kpi-value" id="kpi-avg-amount">₹0.00</span>
+                <span class="kpi-note">Per completed recharge</span>
+            </div>
+            <div class="kpi">
+                <span class="kpi-label">Wallet balance</span>
+                <span class="kpi-value" id="kpi-wallet-bal">₹2,500.00</span>
+                <span class="kpi-note">Minimum balance ₹500</span>
             </div>
         </div>
 
-
-        <div class="smart-insight">
-            <div class="smart-icon">📊</div>
-
+        <section class="guide" aria-labelledby="guide-title">
             <div>
-                <h4>Data Matters</h4>
-                <p>Choose data based on your usage.</p>
+                <h2 class="guide-title" id="guide-title">Choosing a plan</h2>
+                <p class="guide-intro">Compare data, validity and plan benefits to get the most from each recharge.</p>
             </div>
-        </div>
-
-
-        <div class="smart-insight">
-            <div class="smart-icon">⏳</div>
-
-            <div>
-                <h4>Check Validity</h4>
-                <p>Longer validity can mean better value.</p>
+            <div class="guide-list">
+                <div class="guide-item">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4v16"/></svg>
+                    <div>
+                        <h3>5G ready</h3>
+                        <p>Higher speed with lower latency.</p>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                    <div>
+                        <h3>Match data to usage</h3>
+                        <p>Choose a daily data limit based on how you use your phone.</p>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <div>
+                        <h3>Check validity</h3>
+                        <p>Longer validity can mean better value.</p>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <div>
+                        <h3>Stay secure</h3>
+                        <p>Never share your OTP or UPI PIN.</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-
-        <div class="smart-insight">
-            <div class="smart-icon">🔐</div>
-
-            <div>
-                <h4>Stay Secure</h4>
-                <p>Never share OTP or UPI PIN.</p>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
- </div>
+    <div id="toast-shelf" class="toast-shelf" aria-live="polite" aria-atomic="true"></div>
 
     <footer class="site-footer">
         <div class="footer-shell">
             <div class="footer-brand">
-                <div class="footer-logo">⚡</div>
-                <div class="footer-brand-copy">
-                    <div class="footer-brand-row">
-                        <span class="footer-name">Revoza</span>
-                        <span class="footer-tag">Telecom Suite</span>
-                    </div>
-                    <p>Smart mobile recharges, clearer spending insights, and receipts that stay easy to trust.</p>
+                <div class="footer-brand-row">
+                    <span class="brand-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                    <span class="brand-name">Revoza</span>
+                    <span class="brand-tag">Telecom Suite</span>
                 </div>
+                <p>Mobile recharges, spending records and GST receipts in one place.</p>
             </div>
 
             <div class="footer-column">
-                <h4>Company</h4>
+                <h4>Product</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Recharge</a></li>
-                    <li><a href="analytical.html">Insights</a></li>
+                    <li><a href="analytical.html">Analytics</a></li>
                     <li><a href="ledger.html">Ledger</a></li>
                 </ul>
             </div>
@@ -231,17 +150,19 @@
             <div class="footer-column">
                 <h4>Support</h4>
                 <ul class="footer-links">
-                    <li><span>Help Center</span></li>
-                    <li><span>Billing</span></li>
-                    <li><span>Security</span></li>
+                    <li>Help center</li>
+                    <li>Billing</li>
+                    <li>Security</li>
                 </ul>
             </div>
 
-            <div class="footer-column footer-contact">
+            <div class="footer-column">
                 <h4>Contact</h4>
-                <p>support@revoza.app</p>
-                <p>+91 98765 43210</p>
-                <p>Mon–Sat · 9:00 to 21:00 IST</p>
+                <div class="footer-contact">
+                    <p>support@revoza.app</p>
+                    <p>+91 98765 43210</p>
+                    <p>Mon–Sat, 9:00–21:00 IST</p>
+                </div>
             </div>
         </div>
 
